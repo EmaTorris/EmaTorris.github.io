@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emanuele Torrisi - Cybersecurity Professional</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+            color: #00ff00;
+            background: #0a0e27;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(0deg, rgba(0, 255, 0, 0.03) 0px, transparent 1px, transparent 2px, rgba(0, 255, 0, 0.03) 3px),
+                repeating-linear-gradient(90deg, rgba(0, 255, 0, 0.03) 0px, transparent 1px, transparent 2px, rgba(0, 255, 0, 0.03) 3px);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.05;
+            z-index: 0;
+            pointer-events: none;
+            font-size: 12px;
+            line-height: 14px;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(10, 14, 39, 0.95);
+            border-radius: 0;
+            box-shadow: 0 0 50px rgba(0, 255, 0, 0.3), inset 0 0 30px rgba(0, 255, 0, 0.05);
+            overflow: hidden;
+            border: 2px solid #00ff00;
+            position: relative;
+            z-index: 2;
+        }
+
+
+
+        header {
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            color: #00ff00;
+            padding: 60px 40px;
+            text-align: center;
+            border-bottom: 3px solid #00ff00;
+            position: relative;
+        }
+
+        header::before {
+            content: "[ SYSTEM ACCESS GRANTED ]";
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8em;
+            opacity: 0.6;
+            letter-spacing: 3px;
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 700;
+            text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00;
+            letter-spacing: 2px;
+        }
+
+        header h1::before {
+            content: "root@security:~$ ";
+            color: #00ff00;
+            opacity: 0.7;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            margin-bottom: 20px;
+            color: #00ff00;
+            text-shadow: 0 0 5px #00ff00;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .contact-links a {
+            color: #00ff00;
+            text-decoration: none;
+            padding: 10px 20px;
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid #00ff00;
+            transition: all 0.3s;
+            font-family: 'Courier New', monospace;
+        }
+
+        .contact-links a:hover {
+            background: rgba(0, 255, 0, 0.2);
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        section {
+            margin-bottom: 50px;
+        }
+
+        h2 {
+            color: #00ff00;
+            font-size: 2em;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #00ff00;
+            display: inline-block;
+            text-shadow: 0 0 10px #00ff00;
+        }
+
+        h2::before {
+            content: ">> ";
+        }
+
+        .about {
+            background: rgba(0, 255, 0, 0.05);
+            padding: 30px;
+            border-left: 4px solid #00ff00;
+            margin-bottom: 30px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 1024px) {
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .skill-card {
+            background: rgba(0, 255, 0, 0.05);
+            padding: 25px;
+            border: 1px solid #00ff00;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .skill-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 255, 0, 0.1);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .skill-card:hover::before {
+            opacity: 1;
+        }
+
+        .skill-card:hover {
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.4);
+            transform: translateY(-3px);
+        }
+
+        .skill-card h3 {
+            color: #00ff00;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            text-shadow: 0 0 8px #00ff00;
+        }
+
+        .skill-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .skill-card li {
+            padding: 8px 0;
+            padding-left: 20px;
+            position: relative;
+            font-family: 'Courier New', monospace;
+        }
+
+        .skill-card li:before {
+            content: "└─";
+            position: absolute;
+            left: 0;
+            color: #00ff00;
+            font-weight: bold;
+        }
+
+        .experience-item {
+            background: rgba(0, 255, 0, 0.03);
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 4px solid #00ff00;
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            transition: all 0.3s;
+        }
+
+        .experience-item:hover {
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+        }
+
+        .experience-item h3 {
+            color: #00ff00;
+            font-size: 1.5em;
+            margin-bottom: 5px;
+            text-shadow: 0 0 5px #00ff00;
+        }
+
+        .experience-meta {
+            color: #00ff00;
+            font-size: 0.95em;
+            margin-bottom: 15px;
+            opacity: 0.7;
+        }
+
+        .experience-item ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        .experience-item li {
+            margin-bottom: 8px;
+            color: #00ff00;
+        }
+
+        .experience-item li::marker {
+            content: "▸ ";
+        }
+
+        .certifications {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .cert-badge {
+            background: rgba(0, 255, 0, 0.05);
+            color: #00ff00;
+            padding: 20px;
+            border: 2px solid #00ff00;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cert-badge::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(0, 255, 0, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s;
+        }
+
+        .cert-badge:hover::before {
+            left: 100%;
+        }
+
+        .cert-badge:hover {
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
+            transform: scale(1.05);
+        }
+
+        .cert-badge h3 {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            text-shadow: 0 0 5px #00ff00;
+        }
+
+        .cert-badge p {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        .projects {
+            margin-top: 30px;
+        }
+
+        .project-card {
+            background: rgba(0, 255, 0, 0.05);
+            color: #00ff00;
+            padding: 30px;
+            border: 2px solid #00ff00;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .project-card::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 30px 30px 0;
+            border-color: transparent #00ff00 transparent transparent;
+        }
+
+        .project-card:hover {
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.4);
+            transform: translateY(-5px);
+        }
+
+        .project-card h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px #00ff00;
+        }
+
+        .project-card p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .tech-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .tech-tag {
+            background: rgba(0, 255, 0, 0.1);
+            padding: 5px 15px;
+            border: 1px solid #00ff00;
+            font-size: 0.9em;
+            font-family: 'Courier New', monospace;
+            transition: all 0.3s;
+        }
+
+        .tech-tag:hover {
+            background: rgba(0, 255, 0, 0.2);
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+        }
+
+        footer {
+            background: #0a0e27;
+            color: #00ff00;
+            text-align: center;
+            padding: 30px;
+            border-top: 3px solid #00ff00;
+            font-family: 'Courier New', monospace;
+        }
+
+        .terminal-prompt {
+            color: #00ff00;
+            opacity: 0.6;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .blinking-cursor {
+            display: inline-block;
+            width: 10px;
+            height: 20px;
+            background: #00ff00;
+            margin-left: 5px;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            header h1::before {
+                content: "";
+            }
+
+            header p {
+                font-size: 1em;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+        }
+
+        .glitch {
+            position: relative;
+            animation: glitch 3s infinite;
+        }
+
+        @keyframes glitch {
+            0%, 90%, 100% {
+                transform: translate(0);
+            }
+            92% {
+                transform: translate(-2px, 2px);
+            }
+            94% {
+                transform: translate(2px, -2px);
+            }
+            96% {
+                transform: translate(-2px, -2px);
+            }
+            98% {
+                transform: translate(2px, 2px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="matrix-bg"></div>
+    <div class="container">
+        <header>
+            <h1 class="glitch">EMANUELE_TORRISI</h1>
+            <p>[ CYBERSECURITY SPECIALIST | PENTESTER | AI SECURITY RESEARCHER ]</p>
+            <div class="contact-links">
+                <a href="mailto:ematorris12@gmail.com">[ EMAIL ]</a>
+                <a href="https://linkedin.com/in/emanuele-torrisi" target="_blank">[ LINKEDIN ]</a>
+                <a href="https://github.com/EmaTorris" target="_blank">[ GITHUB ]</a>
+                <a href="tel:+393384168804">[ PHONE ]</a>
+            </div>
+        </header>
+
+        <div class="content">
+            <section>
+                <h2>PROFILE.txt</h2>
+                <div class="about">
+                    <p><span class="terminal-prompt">user@security:~$</span> cat profile.txt</p>
+                    <p>Professionista specializzato in cybersecurity con forte interesse per AI & penetration testing, valutazione delle vulnerabilità e sicurezza applicativa. Esperienza in IAM, secure coding e hardening, con approccio strutturato basato su standard OWASP e best practice di security engineering.<span class="blinking-cursor"></span></p>
+                </div>
+            </section>
+
+            <section class="projects">
+                <h2>ACTIVE_PROJECTS</h2>
+                
+                <div class="project-card">
+                    <h3>🔗 [CLEARCHAIN] - BLOCKCHAIN SECURITY PLATFORM</h3>
+                    <p><strong>STATUS:</strong> ACTIVE | <strong>ROLE:</strong> Co-founder | <strong>PERIOD:</strong> 10.2021 - PRESENT</p>
+                    <p>Sviluppo di web-app basata su tecnologia blockchain con focus sulla sicurezza OWASP. Include dispositivo hardware IoT per monitoraggio real-time con comunicazione cifrata verso server remoti e protezione anti-compromissione.</p>
+                    <div class="tech-tags">
+                        <span class="tech-tag">[ Go ]</span>
+                        <span class="tech-tag">[ MongoDB ]</span>
+                        <span class="tech-tag">[ JavaScript ]</span>
+                        <span class="tech-tag">[ Bootstrap ]</span>
+                        <span class="tech-tag">[ Blockchain ]</span>
+                        <span class="tech-tag">[ IoT Security ]</span>
+                        <span class="tech-tag">[ OWASP ]</span>
+                    </div>
+                    <p style="margin-top: 15px;"><em>📜 PATENT_FILED: 01.03.2023</em></p>
+                </div>
+            </section>
+
+            <section>
+                <h2>WORK_EXPERIENCE</h2>
+                
+                <div class="experience-item">
+                    <h3>[CYBER_SEC_ENGINEER] - Lutech S.P.A.</h3>
+                    <div class="experience-meta">LOCATION: Milano-Napoli | PERIOD: 01.2024 - 02.2025</div>
+                    <ul>
+                        <li>Gestione e deployment di soluzioni IAM per clienti enterprise</li>
+                        <li>Sviluppo connettori Java per SailPoint IdentityIQ, AWS IAM, Azure, Jira</li>
+                        <li>Implementazione di policy di sicurezza e gestione accessi</li>
+                        <li>Direct client communication e requirement analysis</li>
+                        <li>TECH_STACK: AWS IAM, SailPoint IdentityIQ, Java</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <h3>[AMBASSADOR] - Contamination Lab UniPi</h3>
+                    <div class="experience-meta">LOCATION: Pisa | PERIOD: 03.2023 - 06.2024</div>
+                    <ul>
+                        <li>Organizzazione hackathon e iniziative tech</li>
+                        <li>Mentoring studenti e startup pre-seed</li>
+                        <li>Seminari su imprenditorialità e business strategy</li>
+                        <li>Supporto business model validation</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <h3>[GAME_DEVELOPER] - Museum of Calculation Instruments</h3>
+                    <div class="experience-meta">LOCATION: Pisa | PERIOD: 11.2014 - 07.2015</div>
+                    <ul>
+                        <li>Sviluppo videogioco educativo per il Museo degli Strumenti del Calcolo</li>
+                        <li>Implementazione meccaniche di gamification per esperienza museale interattiva</li>
+                        <li>Design e sviluppo gameplay educativo</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2>TECHNICAL_SKILLS</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h3>🔐 [OFFENSIVE_SECURITY]</h3>
+                        <ul>
+                            <li>Penetration Testing</li>
+                            <li>Vulnerability Assessment</li>
+                            <li>OWASP Top 10</li>
+                            <li>Network Security</li>
+                            <li>IoT Security</li>
+                            <li>Cryptography</li>
+                            <li>Social Engineering</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-card">
+                        <h3>⚙️ [PROGRAMMING]</h3>
+                        <ul>
+                            <li>Go (Golang)</li>
+                            <li>Java</li>
+                            <li>Python</li>
+                            <li>JavaScript</li>
+                            <li>C</li>
+                            <li>OCaml</li>
+                            <li>Bash Scripting</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-card">
+                        <h3>🛠 [SECURITY_TOOLS]</h3>
+                        <ul>
+                            <li>AWS IAM</li>
+                            <li>SailPoint IdentityIQ</li>
+                            <li>Metasploit</li>
+                            <li>Burp Suite</li>
+                            <li>Nmap</li>
+                            <li>Wireshark</li>
+                            <li>Kali Linux</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-card">
+                        <h3>🌐 [INFRASTRUCTURE]</h3>
+                        <ul>
+                            <li>MongoDB</li>
+                            <li>MySQL</li>
+                            <li>Blockchain Tech</li>
+                            <li>API Security</li>
+                            <li>DevSecOps</li>
+                            <li>Cloud Security</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>CERTIFICATIONS</h2>
+                <div class="certifications">
+                    <div class="cert-badge">
+                        <h3>[ OSCP ]</h3>
+                        <p>Offensive Security</p>
+                        <p>Certified Professional</p>
+                        <p><small>OffSec | IN_PROGRESS</small></p>
+                    </div>
+                    <div class="cert-badge">
+                        <h3>[ AI_FOUNDATION ]</h3>
+                        <p>EXIN BCS</p>
+                        <p>AI Fundamentals</p>
+                        <p><small>EXIN | 28.02.2024</small></p>
+                    </div>
+                    <div class="cert-badge">
+                        <h3>[ CEH ]</h3>
+                        <p>Certified Ethical</p>
+                        <p>Hacker</p>
+                        <p><small>EC-Council | 18.06.2024</small></p>
+                    </div>
+                    <div class="cert-badge">
+                        <h3>[ PATENT ]</h3>
+                        <p>Clearchain</p>
+                        <p>Technology</p>
+                        <p><small>FILED: 01.03.2023</small></p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>EDUCATION</h2>
+                <div class="experience-item">
+                    <h3>[AI_CYBERSEC_ACADEMY] - Randstad Digital</h3>
+                    <div class="experience-meta">DURATION: 240h | PERIOD: 01.2026 - 02.2026</div>
+                    <p>Corso intensivo full-time sull'intersezione tra AI e cybersecurity. Focus su AI security, threat detection, machine learning per sicurezza.</p>
+                </div>
+
+                <div class="experience-item">
+                    <h3>[BSc_COMPUTER_SCIENCE] - Università di Pisa</h3>
+                    <div class="experience-meta">DEGREE: L-31 Informatica | COMPLETED: 02.2026</div>
+                    <p>Laurea triennale con focus su sicurezza informatica, reti e programmazione.</p>
+                </div>
+
+                <div class="experience-item">
+                    <h3>[ENTREPRENEURSHIP] - HM Munich</h3>
+                    <div class="experience-meta">LOCATION: Germany | PERIOD: 10.2022 - 10.2023</div>
+                    <p>Corso di formazione sull'imprenditoria presso Università di Scienze Applicate di Monaco.</p>
+                </div>
+
+                <div class="experience-item">
+                    <h3>[CONTAMINATION_LAB] - Università di Pisa</h3>
+                    <div class="experience-meta">LOCATION: Pisa | PERIOD: 01.2022 - 06.2022</div>
+                    <p>Corso di formazione sull'imprenditoria. Programma intensivo focalizzato su innovazione, sviluppo startup e business model validation.</p>
+                </div>
+            </section>
+        </div>
+
+        <footer>
+            <p class="terminal-prompt">root@security:~$ whoami</p>
+            <p>&copy; 2026 EMANUELE_TORRISI | CYBERSECURITY_PROFESSIONAL</p>
+            <p style="margin-top: 10px; font-size: 0.9em; opacity: 0.8;">[ STATUS: AVAILABLE FOR COLLABORATION & CONSULTING ]</p>
+            <p class="terminal-prompt" style="margin-top: 15px;">Connection established. Ready for secure transmission.<span class="blinking-cursor"></span></p>
+        </footer>
+    </div>
+
+    <script>
+        // Matrix effect background
+        const matrixChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*(){}[]<>/\\|~`';
+        const matrixBg = document.querySelector('.matrix-bg');
+        
+        function createMatrixRain() {
+            const columns = Math.floor(window.innerWidth / 20);
+            let matrixHTML = '';
+            
+            for (let i = 0; i < columns; i++) {
+                matrixHTML += '<div style="position:absolute;top:0;left:' + (i * 20) + 'px;opacity:0.1;color:#00ff00;animation:fall ' + (Math.random() * 5 + 5) + 's linear infinite;animation-delay:' + (Math.random() * 5) + 's">';
+                for (let j = 0; j < 50; j++) {
+                    matrixHTML += matrixChars[Math.floor(Math.random() * matrixChars.length)] + '<br>';
+                }
+                matrixHTML += '</div>';
+            }
+            
+            matrixBg.innerHTML = matrixHTML;
+        }
+        
+        // Add CSS animation for falling text
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fall {
+                0% { transform: translateY(-100%); }
+                100% { transform: translateY(100vh); }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        createMatrixRain();
+    </script>
+</body>
+</html>
